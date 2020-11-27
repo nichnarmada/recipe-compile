@@ -13,6 +13,6 @@ Data Mining
 3. Loop all whitelisted websites and upload them to Firebase
 
 Creating Web-app & Mobile-app
-4. Use Javascript to make a simple website
-5. Connect Firebase database with website
-6. Design a proper UI/UX for ease of using website, and to show which websites are whitelisted
+1. Use Javascript to make a simple website
+2. Connect Firebase database with website
+3. Design a proper UI/UX for ease of using website, and to show which websites are whitelisted
