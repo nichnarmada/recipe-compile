@@ -1,4 +1,4 @@
-# recipe-compile
+# recipe-compiler
 
 I'm currently developing a web app / mobile app to compile multiple recipes available online into 1 single grocery shopping list. 
 
