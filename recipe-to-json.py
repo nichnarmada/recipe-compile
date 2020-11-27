@@ -9,24 +9,7 @@ instructions = scraper.instructions()
 scraper.image()
 
 
-
-#Regex ingredients, split to: qty, unit, ingredient, how to cut
-#Loop through all ingredients
-# print(ingredients)
-
-# class Ingredients:
-#     def __init__(self, quantity, unit, cut):
-#         self.quantity = quantity
-#         self.unit = unit
-#         self.cut = cut
-    
-#     def reprJSON(self):
-#         return dict(quantity=self.quantity, unit=self.unit)
-
-
-
 #want to save it in class under ingredient name, thus need to make a loop per every ingredient
-
 
 #split numbers
 # return tuple of (qty, remaining string)
@@ -91,8 +74,6 @@ def unit_split(ingre):
             return unit.strip()
     
     
-
-
 #split how to cut
 
 def cut_split(ingre):
@@ -121,9 +102,6 @@ def ingre_name_split(ingre, quantity, unit, cut):
             temp.append(word)
     ingre_name = ' '.join(temp)
 
-    # name_results = [word for word in ingrewords[0] if word.lower() not in word_list]
-    # ingre_name = ' '.join(name_results)
-
     return ingre_name
 
 
@@ -138,22 +116,10 @@ for ingre in ingredients:
 
     ingre_dict[ingre_name] = [quantity, unit, cut]
 
-# print(ingredients)
-# print(ingre_dict)
 
 #Transform to JSON format
 
 import json
-
-
-
-# out_file = open("myfile.json", "w")
-# json_object = json.dumps(ingre_dict, out_file, indent = 4)
-# print(json_object)
-
-# title
-# time
-# servings
 
 class Recipe:
     def __init__(self, title, time, servings, ingredients, instructions):
@@ -169,10 +135,6 @@ class Recipe:
 class ComplexEncoder(json.JSONEncoder):
     def default(self, obj):                     # pylint: disable=E0202
         return obj.__dict__  
-        # if hasattr(obj,'reprJSON'):
-        #     return obj.reprJSON()
-        # else:
-        #     return json.JSONEncoder.default(self, obj)
 
 recipe = Recipe(title, time, servings, ingre_dict, instructions)
 
