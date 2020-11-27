@@ -22,6 +22,6 @@ Sample of JSON file is available, file name is called sample.json (JSON file wil
 3. Design a proper UI/UX for ease of using website, and to show which websites are whitelisted
 
 ## Built with:
-[Recipe Scrapers](https://github.com/hhursev/recipe-scrapers) library (made by [hhursev](https://github.com/hhursev), thank you!)
-[Inflector](https://github.com/ixmatus/inflector) library (made by [ixmatus](https://github.com/ixmatus), thank you too!)
-Python 
++ [Recipe Scrapers](https://github.com/hhursev/recipe-scrapers) library (made by [hhursev](https://github.com/hhursev), thank you!)
++ [Inflector](https://github.com/ixmatus/inflector) library (made by [ixmatus](https://github.com/ixmatus), thank you too!)
++ Python 
