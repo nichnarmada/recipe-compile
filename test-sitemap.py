@@ -3,12 +3,7 @@ from bs4 import BeautifulSoup as Soup
 import pandas as pd
 import hashlib
 from recipe_scrapers import scrape_me
-import sys
-from urllib.parse import urlparse
-from urllib.parse import urljoin
-
-
-
+import json
 
 
 #getting all links from a website
@@ -71,64 +66,35 @@ def parse_sitemap(url, headers):
 
 df = parse_sitemap("https://www.bettycrocker.com/sitemap.xml", ["loc"])
 
-for ind in df.index:
-    if "/recipes" not in df['loc'][ind]:
-        df.drop([ind])
+df = df.drop(columns="Source")
 
-#remove broken links
+categories = ["main-ingredient", "global-cuisine", "dishes", "special-occasions", "preparation", "health-and-diet", "courses", "product-recipes", "bestof"]
+
+#remove links without /recipes/
+for ind in df.index:
+    if "https://www.bettycrocker.com/recipes/" not in df['loc'][ind]:
+        df.drop([ind], inplace = True)
+
+#remove links that contains /recipes/categories/
+df = df[df["loc"].str.contains('|'.join(categories))==False]
+
+print(df)
+
+#remove broken links (not sure if needed)
 
 # for ind in df.index:
 #     try:
+#         # print(f"Trying ind number {ind}")
 #         requests.get(df['loc'][ind])
 #         # response = requests.get(df['loc'][ind])
 #         # print("URL is valid and exists on the internet")
-#     except requests.ConnectionError as exception:
-#         df.drop([ind])
-
-# print(df['loc'][0])
-
-
-
-searched_links = []
-broken_links = []
-
-def getLinksFromHTML(html):
-    def getLink(el):
-        return el["href"]
-    return list(map(getLink, Soup(html, features="html.parser").select("a[href]")))
-
-def find_broken_links(domainToSearch, URL, parentURL):
-    if (not (URL in searched_links)) and (not URL.startswith("mailto:")) and (not ("javascript:" in URL)) and (not URL.endswith(".png")) and (not URL.endswith(".jpg")) and (not URL.endswith(".jpeg")):
-        try:
-            requestObj = requests.get(URL)
-            searched_links.append(URL)
-            if(requestObj.status_code == 404):
-                broken_links.append("BROKEN: link " + URL + " from " + parentURL)
-                print(broken_links[-1])
-            else:
-                print("NOT BROKEN: link " + URL + " from " + parentURL)
-                if urlparse(URL).netloc == domainToSearch:
-                    for link in getLinksFromHTML(requestObj.text):
-                        find_broken_links(domainToSearch, urljoin(URL, link), URL)
-        except Exception as e:
-            print("ERROR: " + str(e))
-            searched_links.append(domainToSearch)
-
-find_broken_links(urlparse(sys.argv[1]).netloc, sys.argv[1], "")
-
-print("\n--- DONE! ---\n")
-print("The following links were broken:")
-
-for link in broken_links:
-    print ("\t" + link)
+#     except Exception as exception:
+#         df.drop([ind], inplace = True)
+#         print(ind)
+#         print(exception)
 
 
-
-
-
-
-
-#make condition to check if its a recipe or not
+#make condition to check if its a recipe or not (not sure if needed)
 
 def is_Recipe(dataframe):
     for ind in dataframe.index:
@@ -141,11 +107,17 @@ def is_Recipe(dataframe):
         # scraper.image()
 
         if not ingredients:
-            dataframe.drop([ind])
+            dataframe.drop([ind], inplace = True)
         else:
             continue
     
     return dataframe
 
-# df = is_Recipe(df)
-# print(df)
+
+#put all links in a json file
+result = df["loc"].to_json(orient="values")
+parsed = json.loads(result)
+# json.dumps(parsed, indent=4)
+
+with open("bettycrocker.json", "w") as outfile: 
+    json.dump(parsed, outfile, indent = 4)
