@@ -9,6 +9,8 @@ Dataset is also converted to a JSON file.
 
 Sample of JSON file is available, file name is called sample.json (JSON file will be uploaded to Firebase)
 
+UPDATE: Extracted all links from a website's xml file, and filter their recipes only (bettycrocker)
+
 ## Next steps
 
 ### Data Mining
