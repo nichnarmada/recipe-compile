@@ -1,4 +1,8 @@
 from recipe_scrapers import scrape_me
+
+#loop through all links from json file
+
+
 scraper = scrape_me('https://www.bettycrocker.com/recipes/ultimate-chocolate-chip-cookies/77c14e03-d8b0-4844-846d-f19304f61c57', wild_mode=True)
 # if no error is raised - there's schema available:
 title = scraper.title()
@@ -9,7 +13,11 @@ instructions = scraper.instructions()
 scraper.image()
 
 
-#want to save it in class under ingredient name, thus need to make a loop per every ingredient
+
+#Regex ingredients, split to: qty, unit, ingredient, how to cut
+#Loop through all ingredients
+
+
 
 #split numbers
 # return tuple of (qty, remaining string)
@@ -72,8 +80,8 @@ def unit_split(ingre):
     for unit in unit_short:
         if re.search(rf"\b{unit}\b", ingre) is not None:
             return unit.strip()
-    
-    
+
+
 #split how to cut
 
 def cut_split(ingre):
@@ -102,6 +110,9 @@ def ingre_name_split(ingre, quantity, unit, cut):
             temp.append(word)
     ingre_name = ' '.join(temp)
 
+    # name_results = [word for word in ingrewords[0] if word.lower() not in word_list]
+    # ingre_name = ' '.join(name_results)
+
     return ingre_name
 
 
@@ -115,7 +126,6 @@ for ingre in ingredients:
     ingre_name = ingre_name_split(ingre, quantity, unit, cut)
 
     ingre_dict[ingre_name] = [quantity, unit, cut]
-
 
 #Transform to JSON format
 
@@ -138,7 +148,10 @@ class ComplexEncoder(json.JSONEncoder):
 
 recipe = Recipe(title, time, servings, ingre_dict, instructions)
 
-print(json.dumps(recipe.reprJSON(), cls=ComplexEncoder))
+# print(json.dumps(recipe.reprJSON(), cls=ComplexEncoder))
 
-with open("sample.json", "w") as outfile: 
+with open(f"{recipe.title}.json", "w") as outfile: 
     json.dump(recipe.reprJSON(), outfile, cls=ComplexEncoder, indent = 4)
+
+
+#upload json file to firebase
