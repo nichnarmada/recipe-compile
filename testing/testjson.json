@@ -1,0 +1,47 @@
+{
+    "Japanese rice": {
+        "Quantity": "1",
+        "Units": "cup",
+        "Ingredient": "Japanese rice"
+    },
+    "chicken stock": {
+        "Quantity": "0.33",
+        "Units": "cup",
+        "Ingredient": "chicken stock"
+    },
+    "white sugar": {
+        "Quantity": "1",
+        "Units": "tsp",
+        "Ingredient": "white sugar"
+    },
+    "soy sauce": {
+        "Quantity": "1",
+        "Units": "tbsp",
+        "Ingredient": "soy sauce"
+    },
+    "vegetable oil": {
+        "Quantity": "2",
+        "Units": "tbsp",
+        "Ingredient": "vegetable oil"
+    },
+    "onion": {
+        "Quantity": "0.5",
+        "Units": "",
+        "Ingredient": "onion"
+    },
+    "chicken thighs": {
+        "Quantity": "200",
+        "Units": "g",
+        "Ingredient": "chicken thighs"
+    },
+    "eggs": {
+        "Quantity": "3",
+        "Units": "",
+        "Ingredient": "eggs"
+    },
+    "spring onions": {
+        "Quantity": "0.25",
+        "Units": "cup",
+        "Ingredient": "spring onions"
+    }
+}

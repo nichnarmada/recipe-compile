@@ -1,0 +1,37 @@
+To-dos: (Just for Betty Crocker)
+    1. Find Dish Name (Done)
+    2. Find Ingredient list (Done)
+    3. Split ingredient list to quantity, quantifiers and ingredients (Done)
+    4. Find number of servings (Done)
+    5. Figure out if statements (Done)
+    6. Find duration of cooking (Done)
+    7. Figure out way to output evth into json using classes (Done)
+    8. Trial upload to a Firebase server using the json file (Done)
+
+
+Looping to get links in website: (DONE!!!!)
+
+    Method 1: 
+        1. Get all "categories" of recipes
+        2. Get all recipe links from the possible categories (it uses relative links, so just concat string)
+        3. Remove duplicates
+        4. Make condition that if instructions is empty string, remove link
+
+    Method 2: (Priority, cuz it should be faster and simpler)
+        1. Get the sitemap of the website from the website's robot.txt thingy
+        2. Get all links from the sitemap xml file
+        3. Test if links work? (not sure if needed or not)
+        4. Filter links to those that contain /recipes and not in categories
+        5. Make condition that if instructions is empty string, remove link (not sure if needed or not)
+
+
+Upload to Firebase:
+    1. Loop to all recipes available in website (working on it)
+    2. Include code that uploads the json file to firebase immediately after it works (working on it)
+
+
+Test other websites, whitelist those that have same formatting as Betty Crocker
+
+Must have codes:
+    1. Filter links, only keep recipe links (depends on website's link formatting)
+    2. Regex stuff, depending on the website's formatting

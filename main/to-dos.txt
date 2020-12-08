@@ -1,0 +1,16 @@
+To-dos:
+    1. Main files that have functions of:
+        - Get xml file from website.com/robots.txt
+            - If there are multiple files, choose using numbers (use dataframe)
+            - If none, ask for a manual input instead
+        - Get all links from the xml file
+        - Loop through all links to get Recipe infos (title, ingredients, etc)
+        - Maybe store all links into a json file too, as a stop gap
+        - Store into a json file
+        - Upload json file to firebase
+    2. Have set formulas for conversion (cups to ml, etc) ready in one file
+    3. 
+
+Copyrights:
+1. recipe_scrapers
+2. inflector
