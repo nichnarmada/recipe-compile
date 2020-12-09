@@ -154,5 +154,24 @@ with open(f"{recipe.title}.json", "w") as outfile:
     json.dump(recipe.reprJSON(), outfile, cls=ComplexEncoder, indent = 4)
 
 
+#add json generate key thingy to git ignore
+
 #upload json file to firebase
-#quick
+import pandas as pd
+import firebase_admin
+from firebase_admin import credentials, firestore
+
+cred = credentials.Certificate('<your-serviceAccountKeyJson-directory>')
+
+firebase_admin.initialize_app(cred, 
+{
+'databaseURL': 'https://.firebaseio.com/'
+})
+
+db = firestore.client()
+doc_ref = db.collection(u’applications’)
+
+# Import data
+df = pd.read_csv('')
+tmp = df.to_dict(orient='')
+list(map(lambda x: doc_ref.add(x), tmp))

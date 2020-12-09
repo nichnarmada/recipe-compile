@@ -27,3 +27,4 @@ UPDATE: Extracted all links from a website's xml file, and filter their recipes 
 + [Recipe Scrapers](https://github.com/hhursev/recipe-scrapers) library (made by [hhursev](https://github.com/hhursev), thank you!)
 + [Inflector](https://github.com/ixmatus/inflector) library (made by [ixmatus](https://github.com/ixmatus), thank you too!)
 + Python 
++ Javascript (Soon to be)
