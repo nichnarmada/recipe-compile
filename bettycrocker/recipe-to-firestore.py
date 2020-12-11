@@ -147,7 +147,7 @@ firebase_admin.initialize_app(cred, {
 
 # Iterating through the json 
 # list 
-for link in data: 
+for link in data[472:10000]: 
     scraper = scrape_me(link, wild_mode=True)
 
     title = scraper.title()
@@ -158,17 +158,20 @@ for link in data:
     scraper.image()
 
 
-
     #sorting out ingredients to their stuff
     ingre_dict = {}
 
     for ingre in ingredients:
-        quantity = qty_split(ingre)
-        unit = unit_split(ingre)
-        cut = cut_split(ingre)
-        ingre_name = ingre_name_split(ingre, quantity, unit, cut)
+        try: 
+            quantity = qty_split(ingre)
+            unit = unit_split(ingre)
+            cut = cut_split(ingre)
+            ingre_name = ingre_name_split(ingre, quantity, unit, cut)
 
-        ingre_dict[ingre_name] = {"quantity": quantity, "unit": unit, "cut": cut}
+            ingre_dict[ingre_name] = {"quantity": quantity, "unit": unit, "cut": cut}
+        except Exception:
+            pass
+    
 
     recipe = Recipe(title, time, servings, ingre_dict, instructions)
 
