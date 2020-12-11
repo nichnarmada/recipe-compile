@@ -125,7 +125,7 @@ for ingre in ingredients:
     cut = cut_split(ingre)
     ingre_name = ingre_name_split(ingre, quantity, unit, cut)
 
-    ingre_dict[ingre_name] = {"Quantity": quantity, "Unit": unit, "Cut": cut}
+    ingre_dict[ingre_name] = {"quantity": quantity, "unit": unit, "cut": cut}
 
 #Transform to JSON format
 
@@ -148,18 +148,17 @@ class ComplexEncoder(json.JSONEncoder):
 
 recipe = Recipe(title, time, servings, ingre_dict, instructions)
 
-# print(json.dumps(recipe.reprJSON(), cls=ComplexEncoder))
 
-with open(f"{recipe.title}.json", "w") as outfile: 
-    json.dump(recipe.reprJSON(), outfile, cls=ComplexEncoder, indent = 4)
-
-
-#add json generate key thingy to git ignore
+def to_Json(recipe):
+    with open(f"{recipe.title}.json", "w") as outfile: 
+        json.dump(recipe.reprJSON(), outfile, cls=ComplexEncoder, indent = 4)
 
 #upload json file to firebase
-import pandas as pd
 import firebase_admin
 from firebase_admin import credentials, firestore
+from firebase_admin import db
+import requests
+from pprint import pprint
 
 cred = credentials.Certificate('../foodstuff-be28b-firebase-adminsdk-2pi9a-0be2b43333.json')
 
@@ -168,9 +167,7 @@ firebase_admin.initialize_app(cred, {
 })
 
 db = firestore.client()
-doc_ref = db.collection(u'recipesites').document(u'bettycrocker').set(recipe)
 
-# # Import data
-# df = pd.read_csv('')
-# tmp = df.to_dict(orient='')
-# list(map(lambda x: doc_ref.add(x), tmp))
+#Import Data
+# print(vars(recipe))
+db.collection(u'recipesites').document(u'bettycrocker').collection(u'recipes').document(recipe.title).set(vars(recipe))
