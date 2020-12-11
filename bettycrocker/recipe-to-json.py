@@ -172,4 +172,7 @@ db = firestore.client()
 
 #Import Data
 # print(vars(recipe))
-db.collection(u'recipesites').document(u'bettycrocker').collection(u'recipes').document(recipe.title).set(vars(recipe))
+try:
+    db.collection(u'recipesites').document(u'bettycrocker').collection(u'recipes').document(recipe.title).set(vars(recipe))
+except Exception:
+    pass
