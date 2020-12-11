@@ -1,4 +1,10 @@
 from recipe_scrapers import scrape_me
+import re
+from inflector import English
+import json
+import firebase_admin
+from firebase_admin import credentials, firestore
+from firebase_admin import db
 
 #loop through all links from json file
 
@@ -21,7 +27,7 @@ scraper.image()
 
 #split numbers
 # return tuple of (qty, remaining string)
-import re
+
 
 def qty_split(ingre):
 
@@ -67,7 +73,7 @@ def qty_split(ingre):
 unit_short = ["tbsp", "tsp", "oz", "ml", "l", "g", "kg", "lb"]
 unit_full = ["tablespoon", "teaspoon", "cup", "ounce", "millilitre", "litre", "gram", "kilogram", "clove", "pound", "link"]
 
-from inflector import English
+
 eng_noun = English()
 
 def unit_split(ingre):
@@ -129,7 +135,7 @@ for ingre in ingredients:
 
 #Transform to JSON format
 
-import json
+
 
 class Recipe:
     def __init__(self, title, time, servings, ingredients, instructions):
@@ -154,11 +160,7 @@ def to_Json(recipe):
         json.dump(recipe.reprJSON(), outfile, cls=ComplexEncoder, indent = 4)
 
 #upload json file to firebase
-import firebase_admin
-from firebase_admin import credentials, firestore
-from firebase_admin import db
-import requests
-from pprint import pprint
+
 
 cred = credentials.Certificate('../foodstuff-be28b-firebase-adminsdk-2pi9a-0be2b43333.json')
 
