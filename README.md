@@ -21,7 +21,7 @@ UPDATE: Tested an upload of 1 recipe to Firestore
 3. Loop all whitelisted websites and upload them to Firebase
 
 ### Creating Web-app & Mobile-app
-1. Use Javascript to make a simple website
+1. Use Javascript/Dart to make a simple website
 2. Connect Firebase database with website
 3. Design a proper UI/UX for ease of using website, and to show which websites are whitelisted
 
