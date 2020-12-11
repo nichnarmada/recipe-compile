@@ -1,3 +1,4 @@
+#external libraries
 from recipe_scrapers import scrape_me
 import re
 from inflector import English
@@ -6,11 +7,14 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from firebase_admin import db
 
+#modules from main file
+
+
 #loop through all links from json file
 
 
 scraper = scrape_me('https://www.bettycrocker.com/recipes/ultimate-chocolate-chip-cookies/77c14e03-d8b0-4844-846d-f19304f61c57', wild_mode=True)
-# if no error is raised - there's schema available:
+
 title = scraper.title()
 time = scraper.total_time()
 servings = scraper.yields()
@@ -23,12 +27,7 @@ scraper.image()
 #Regex ingredients, split to: qty, unit, ingredient, how to cut
 #Loop through all ingredients
 
-
-
 #split numbers
-# return tuple of (qty, remaining string)
-
-
 def qty_split(ingre):
 
     # Contains a fraction
@@ -89,7 +88,6 @@ def unit_split(ingre):
 
 
 #split how to cut
-
 def cut_split(ingre):
     if re.search(r",", ingre) is not None:
         cut_way = re.search(r",(\D+)", ingre)
@@ -97,7 +95,6 @@ def cut_split(ingre):
 
 
 #get ingredient name
-ingre: '5 tbsp unsalted butter, divided'
 
 def ingre_name_split(ingre, quantity, unit, cut):
     word_list = ["to"]
@@ -133,9 +130,8 @@ for ingre in ingredients:
 
     ingre_dict[ingre_name] = {"quantity": quantity, "unit": unit, "cut": cut}
 
-#Transform to JSON format
 
-
+#Transform to Dictionary/JSON format
 
 class Recipe:
     def __init__(self, title, time, servings, ingredients, instructions):
@@ -154,14 +150,12 @@ class ComplexEncoder(json.JSONEncoder):
 
 recipe = Recipe(title, time, servings, ingre_dict, instructions)
 
-
+#Optional Json file output function
 def to_Json(recipe):
     with open(f"{recipe.title}.json", "w") as outfile: 
         json.dump(recipe.reprJSON(), outfile, cls=ComplexEncoder, indent = 4)
 
-#upload json file to firebase
-
-
+#upload dictionary to firebase
 cred = credentials.Certificate('../foodstuff-be28b-firebase-adminsdk-2pi9a-0be2b43333.json')
 
 firebase_admin.initialize_app(cred, {
