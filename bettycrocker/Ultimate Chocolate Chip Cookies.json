@@ -2,56 +2,56 @@
     "name": "Ultimate Chocolate Chip Cookies",
     "servings": "48 serving(s)",
     "ingredients": {
-        "Gold flour": [
-            2.25,
-            "cup",
-            null
-        ],
-        "baking soda": [
-            1,
-            "teaspoon",
-            null
-        ],
-        "salt": [
-            0.5,
-            "teaspoon",
-            null
-        ],
-        "butter": [
-            1,
-            "cup",
-            "softened"
-        ],
-        "granulated sugar": [
-            0.75,
-            "cup",
-            null
-        ],
-        "packed brown sugar": [
-            0.75,
-            "cup",
-            null
-        ],
-        "egg": [
-            1,
-            null,
-            null
-        ],
-        "vanilla": [
-            1,
-            "teaspoon",
-            null
-        ],
-        "semisweet chocolate chips": [
-            2,
-            "cup",
-            null
-        ],
-        "coarsely chopped nuts": [
-            1,
-            "cup",
-            "if desired"
-        ]
+        "Gold flour": {
+            "Quantity": 2.25,
+            "Unit": "cup",
+            "Cut": null
+        },
+        "baking soda": {
+            "Quantity": 1,
+            "Unit": "teaspoon",
+            "Cut": null
+        },
+        "salt": {
+            "Quantity": 0.5,
+            "Unit": "teaspoon",
+            "Cut": null
+        },
+        "butter": {
+            "Quantity": 1,
+            "Unit": "cup",
+            "Cut": "softened"
+        },
+        "granulated sugar": {
+            "Quantity": 0.75,
+            "Unit": "cup",
+            "Cut": null
+        },
+        "packed brown sugar": {
+            "Quantity": 0.75,
+            "Unit": "cup",
+            "Cut": null
+        },
+        "egg": {
+            "Quantity": 1,
+            "Unit": null,
+            "Cut": null
+        },
+        "vanilla": {
+            "Quantity": 1,
+            "Unit": "teaspoon",
+            "Cut": null
+        },
+        "semisweet chocolate chips": {
+            "Quantity": 2,
+            "Unit": "cup",
+            "Cut": null
+        },
+        "coarsely chopped nuts": {
+            "Quantity": 1,
+            "Unit": "cup",
+            "Cut": "if desired"
+        }
     },
     "instructions": "Heat oven to 375\u00b0F. In small bowl, mix flour, baking soda and salt; set aside. In large bowl, beat softened butter and sugars with electric mixer on medium speed, or mix with spoon about 1 minute or until fluffy, scraping side of bowl occasionally. Beat in egg and vanilla until smooth. Stir in flour mixture just until blended (dough will be stiff). Stir in chocolate chips and nuts. Onto ungreased cookie sheets, drop dough by rounded tablespoonfuls 2 inches apart. Bake 8 to 10 minutes or until light brown (centers will be soft). Cool 2 minutes; remove from cookie sheet to cooling rack. Cool completely, about 30 minutes. Store covered in airtight container."
 }
