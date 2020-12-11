@@ -11,16 +11,12 @@ from firebase_admin import db
 
 
 #loop through all links from json file
+# Opening JSON file 
+f = open('bettycrocker.json',)
 
-
-scraper = scrape_me('https://www.bettycrocker.com/recipes/ultimate-chocolate-chip-cookies/77c14e03-d8b0-4844-846d-f19304f61c57', wild_mode=True)
-
-title = scraper.title()
-time = scraper.total_time()
-servings = scraper.yields()
-ingredients = scraper.ingredients()
-instructions = scraper.instructions()
-scraper.image()
+# returns JSON object as  
+# a dictionary 
+data = json.load(f) 
 
 
 
@@ -119,18 +115,6 @@ def ingre_name_split(ingre, quantity, unit, cut):
     return ingre_name
 
 
-#sorting out ingredients to their stuff
-ingre_dict = {}
-
-for ingre in ingredients:
-    quantity = qty_split(ingre)
-    unit = unit_split(ingre)
-    cut = cut_split(ingre)
-    ingre_name = ingre_name_split(ingre, quantity, unit, cut)
-
-    ingre_dict[ingre_name] = {"quantity": quantity, "unit": unit, "cut": cut}
-
-
 #Transform to Dictionary/JSON format
 
 class Recipe:
@@ -148,8 +132,6 @@ class ComplexEncoder(json.JSONEncoder):
     def default(self, obj):                     # pylint: disable=E0202
         return obj.__dict__  
 
-recipe = Recipe(title, time, servings, ingre_dict, instructions)
-
 #Optional Json file output function
 def to_Json(recipe):
     with open(f"{recipe.title}.json", "w") as outfile: 
@@ -162,11 +144,44 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://foodstuff-be28b.firebaseio.com/'
 })
 
-db = firestore.client()
 
-#Import Data
-# print(vars(recipe))
-try:
-    db.collection(u'recipesites').document(u'bettycrocker').collection(u'recipes').document(recipe.title).set(vars(recipe))
-except Exception:
-    pass
+# Iterating through the json 
+# list 
+for link in data: 
+    scraper = scrape_me(link, wild_mode=True)
+
+    title = scraper.title()
+    time = scraper.total_time()
+    servings = scraper.yields()
+    ingredients = scraper.ingredients()
+    instructions = scraper.instructions()
+    scraper.image()
+
+
+
+    #sorting out ingredients to their stuff
+    ingre_dict = {}
+
+    for ingre in ingredients:
+        quantity = qty_split(ingre)
+        unit = unit_split(ingre)
+        cut = cut_split(ingre)
+        ingre_name = ingre_name_split(ingre, quantity, unit, cut)
+
+        ingre_dict[ingre_name] = {"quantity": quantity, "unit": unit, "cut": cut}
+
+    recipe = Recipe(title, time, servings, ingre_dict, instructions)
+
+    db = firestore.client()
+
+    #Import Data
+    # print(vars(recipe))
+    try:
+        db.collection(u'recipesites').document(u'bettycrocker').collection(u'recipes').document(recipe.title).set(vars(recipe))
+    except Exception:
+        pass
+    else:
+        print(f"Successfully uploaded {recipe.title}")
+
+# Closing file 
+f.close()
