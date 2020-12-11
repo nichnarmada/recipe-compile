@@ -125,7 +125,7 @@ for ingre in ingredients:
     cut = cut_split(ingre)
     ingre_name = ingre_name_split(ingre, quantity, unit, cut)
 
-    ingre_dict[ingre_name] = [quantity, unit, cut]
+    ingre_dict[ingre_name] = {"Quantity": quantity, "Unit": unit, "Cut": cut}
 
 #Transform to JSON format
 
@@ -161,17 +161,16 @@ import pandas as pd
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-cred = credentials.Certificate('<your-serviceAccountKeyJson-directory>')
+cred = credentials.Certificate('../foodstuff-be28b-firebase-adminsdk-2pi9a-0be2b43333.json')
 
-firebase_admin.initialize_app(cred, 
-{
-'databaseURL': 'https://.firebaseio.com/'
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://foodstuff-be28b.firebaseio.com/'
 })
 
 db = firestore.client()
-doc_ref = db.collection(u’applications’)
+doc_ref = db.collection(u'recipesites').document(u'bettycrocker').set(recipe)
 
-# Import data
-df = pd.read_csv('')
-tmp = df.to_dict(orient='')
-list(map(lambda x: doc_ref.add(x), tmp))
+# # Import data
+# df = pd.read_csv('')
+# tmp = df.to_dict(orient='')
+# list(map(lambda x: doc_ref.add(x), tmp))
