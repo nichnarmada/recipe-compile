@@ -9,7 +9,9 @@ Dataset is also converted to a JSON file.
 
 Sample of JSON file is available, file name is called sample.json (JSON file will be uploaded to Firebase)
 
-UPDATE: Extracted all links from a website's xml file, and filter their recipes only (bettycrocker)
+Extracted all links from a website's xml file, and filter their recipes only (bettycrocker)
+
+UPDATE: Tested an upload of 1 recipe to Firestore
 
 ## Next steps
 
@@ -27,4 +29,4 @@ UPDATE: Extracted all links from a website's xml file, and filter their recipes 
 + [Recipe Scrapers](https://github.com/hhursev/recipe-scrapers) library (made by [hhursev](https://github.com/hhursev), thank you!)
 + [Inflector](https://github.com/ixmatus/inflector) library (made by [ixmatus](https://github.com/ixmatus), thank you too!)
 + Python 
-+ Javascript (Soon to be)
++ Javascript/Dart (Soon to be)
